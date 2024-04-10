@@ -127,7 +127,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.KEY }}
           script: |
-            sudo docker rm -f $(sudo docker ps -qa)
+            sudo docker compose down --rmi all
             sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-webserver
             sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-database
             sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-application
