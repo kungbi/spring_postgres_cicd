@@ -112,12 +112,12 @@ jobs:
       - name: application docker build and push
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -f Dockerfile-Webserver -t ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:webserver .
-          docker build -f Dockerfile-Database -t ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:database .
-          docker build -f Dockerfile-Application -t ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:application .
-          docker push ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:webserver
-          docker push ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:database
-          docker push ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:application
+          docker build -f Dockerfile-Webserver -t ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-webserver .
+          docker build -f Dockerfile-Database -t ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-database .
+          docker build -f Dockerfile-Application -t ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-application .
+          docker push ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-webserver
+          docker push ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-database
+          docker push ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-application
 
       ## docker compose up
       - name: executing remote ssh commands using password
@@ -128,8 +128,8 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             sudo docker rm -f $(sudo docker ps -qa)
-            sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:webserver
-            sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:database
-            sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo:application
+            sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-webserver
+            sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-database
+            sudo docker pull ${{ secrets.DOCKER_REPO }}/spring-postgres-cicd-demo-application
             sudo docker compose up -d
             sudo docker image prune -f
