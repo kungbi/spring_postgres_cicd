@@ -2,7 +2,12 @@ spring:
   application:
     name: spring_postgres_cicd_demo
   profiles:
+    default: prod
+---
+spring:
+  profiles:
     include: database
+    active: prod
 ---
 spring:
   profiles:
