@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring_postgres_cicd_demo
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring_postgres_cicd_demo
+    username: root
+    password: 1234
