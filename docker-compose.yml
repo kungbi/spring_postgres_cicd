@@ -1,0 +1,25 @@
+version: '1.0'
+services:
+  application:
+    container_name: application
+    image: kungbi/spring-postgres-cicd-demo:application
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+
+  webserver:
+    container_name: webserver
+    image: kungbi/spring-postgres-cicd-demo:webserver
+    ports:
+      - 80:80
+    depends_on:
+      - application
+
+  database:
+    container_name: database
+    image: kungbi/spring-postgres-cicd-demo:database
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=1234
