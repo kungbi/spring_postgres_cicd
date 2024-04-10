@@ -1,7 +1,12 @@
 spring:
   application:
     name: spring_postgres_cicd_demo
-
+  profiles:
+    include: database
+---
+spring:
+  profiles:
+    active: dev
   datasource:
     url: jdbc:postgresql://localhost:5432/spring_postgres_cicd_demo
     username: root
